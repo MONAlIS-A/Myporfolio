@@ -2,450 +2,315 @@
 {% load static %}
 {% block title %} Home {% endblock title %}
 
+{% block style %}
+<style>
+    :root {
+        --primary-gradient: linear-gradient(135deg, #6a1b9a 0%, #4a148c 100%);
+        --accent-gradient: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
+        --card-bg: rgba(255, 255, 255, 0.05);
+        --glass-border: rgba(255, 255, 255, 0.1);
+        --text-bright: #ffffff;
+        --text-muted: rgba(255, 255, 255, 0.7);
+    }
+
+    body {
+        background: #0f0c29;
+        background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+        color: var(--text-bright);
+        font-family: 'Poppins', sans-serif;
+    }
+
+    /* Hero Section */
+    .hero-section {
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+        padding: 100px 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 50px;
+    }
+
+    .hero-image-wrapper {
+        flex: 1;
+        position: relative;
+    }
+
+    .hero-image {
+        width: 100%;
+        max-width: 450px;
+        border-radius: 30px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        transition: transform 0.5s ease;
+    }
+
+    .hero-image:hover {
+        transform: scale(1.02);
+    }
+
+    .hero-content {
+        flex: 1.2;
+    }
+
+    .hero-content h1 {
+        font-size: 4rem;
+        font-weight: 800;
+        margin-bottom: 10px;
+    }
+
+    .hero-content h1 span {
+        background: linear-gradient(90deg, #00d2ff, #9d50bb);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .hero-content h2 {
+        font-size: 2rem;
+        color: var(--text-muted);
+        margin-bottom: 20px;
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        color: var(--text-muted);
+    }
+
+    .btn-hire {
+        background: var(--primary-gradient);
+        color: white;
+        padding: 15px 40px;
+        border-radius: 50px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s;
+        display: inline-block;
+        border: none;
+        box-shadow: 0 10px 20px rgba(106, 27, 154, 0.3);
+    }
+
+    .btn-hire:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 30px rgba(106, 27, 154, 0.5);
+        color: white;
+    }
+
+    /* Section Styling */
+    .section-title {
+        text-align: center;
+        margin: 80px 0 50px;
+        position: relative;
+    }
+
+    .section-title h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        display: inline-block;
+        padding: 0 20px;
+        background: #1a1a2e;
+        position: relative;
+        z-index: 1;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.1);
+        z-index: 0;
+    }
+
+    /* Cards */
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        margin-bottom: 50px;
+    }
+
+    .custom-card {
+        background: var(--card-bg);
+        backdrop-filter: blur(10px);
+        border: 1px solid var(--glass-border);
+        border-radius: 20px;
+        padding: 0;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        text-align: center;
+    }
+
+    .custom-card:hover {
+        transform: translateY(-10px);
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .card-icon-wrapper {
+        height: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, rgba(106, 27, 154, 0.2), rgba(0, 210, 255, 0.2));
+    }
+
+    .card-icon {
+        width: 80px;
+        height: 80px;
+        object-fit: contain;
+    }
+
+    .card-body {
+        padding: 25px;
+        background: white;
+        color: #333;
+    }
+
+    .card-body h3 {
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: #1a1a2e;
+    }
+
+    .card-body p {
+        font-size: 0.95rem;
+        color: #666;
+        margin-bottom: 0;
+    }
+
+    /* Footer Buttons */
+    .btn-read-more {
+        background: var(--primary-gradient);
+        color: white;
+        padding: 12px 35px;
+        border-radius: 50px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s;
+        display: block;
+        width: fit-content;
+        margin: 0 auto;
+    }
+
+    .btn-read-more:hover {
+        transform: scale(1.05);
+        color: white;
+    }
+
+    /* Responsive */
+    @media (max-width: 991px) {
+        .hero-container {
+            flex-direction: column;
+            text-align: center;
+        }
+        .hero-content h1 {
+            font-size: 3rem;
+        }
+    }
+</style>
+{% endblock style %}
+
 {% block main-content %}
-  
-	  
-	  
-    
-	  <section id="home-section" class="hero">
-		  <div class="home-slider  owl-carousel">
-	       <div class="slider-item ">
-	      	<div class="overlay"></div>
-	         <div class="container">
-	          <div class="row d-md-flex no-gutters slider-text align-items-end justify-content-end" data-scrollax-parent="true">
-	          	<div class="one-third js-fullheight order-md-last img" style="background-image:url('{% static 'app/images/monalisa_resume.png' %}') ; background-size: 300px auto; border-radius: 10px;">
-	          	 <div class="overlay"></div>
-	            </div>
-		          <div class="one-forth d-flex  align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }" >
-		          	<div class="text">
-		          		<span class="subheading">Hello!</span>
-			            <h1 class="mb-4 mt-3">I'm <span>Monalisa</span></h1>
-
-						<!-- Element to contain animated typing -->
-						<span id="typing-animation"></span>
-
-						<script>
-
-						// Initialize the typing animation
-						const typingAnimationElement = document.getElementById('typing-animation');
-
-						// Create an array of typing text
-						const typingTexts = [
-						"Backend Django Developer",
-						'Data Analyst ',
-						'Data Scientist  ',
-						];
-
-						// Create a function to display the typing animation for a given text
-						function playTypingAnimation(text) {
-						// Loop through each character and add it to the element
-						for (let i = 0; i < text.length; i++) {
-							setTimeout(() => {
-							typingAnimationElement.textContent += text[i];
-							}, i * 200); // Increase the delay to slow down the typing animation
-						}
-
-						// Once the animation is complete, reset the text and start over
-						setTimeout(() => {
-							typingAnimationElement.textContent = '';
-							playTypingAnimation(typingTexts[(typingTexts.indexOf(text) + 1) % typingTexts.length]);
-						}, text.length * 200);
-						}
-
-						// Start the typing animation loop
-						playTypingAnimation(typingTexts[0]);
-
-						</script>
-
-						<br>
-						<br>
-			            <h2>A Django Developer</h2>
-						<!-- <h2 class="d-flex" style="margin-bottom: 0">With over 5 years of experience</h2> -->
-						<!-- <br> -->
-						 {% comment "" %}
-			            <p><a href="https://www.youtube.com/@RishabhMishraOfficial" class="btn btn-primary py-3 px-4">YouTube</a> 
-							<a href="https://github.com/rishabhnmishra" class="btn btn-white btn-outline-white py-3 px-4">My works</a></p>
-						{% endcomment %}
-						{% for links in data %}
-						<div class="social-links text-center" style="display:flex;gap: 10px">
-							<a href="https://github.com/MONAlIS-A" class="github"><i class="fa-brands fa-github"></i></a>
-							<a href="{{links.facebook_link}}" class="facebook"><i class="fa-brands fa-facebook"></i></a>
-							<a href="{{links.instagram_link}}" class="instragram"><i class="fa-brands fa-instagram"></i></a>
-							<a href="{{links.discord_link}}" class="discord"><i class="fa-brands fa-discord"></i></a>
-							<a href="{{links.linkedin}}" class="linkedin"><i class="fa-brands fa-linkedin"></i></a>
-						</div>
-						{% endfor %}
-						
-		            </div>
-		          </div>
-	        	</div>
-	        </div>
-	      </div>
-		</div>
+<div class="container">
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-container">
+            <div class="hero-image-wrapper">
+                {% for person in data %}
+                <img src="{% static 'app/images/mona2.png' %}" alt="{{ person.name }}" class="hero-image">
+                {% endfor %}
+            </div>
+            <div class="hero-content">
+                {% for person in data %}
+                <h1>Hello, I'm <span>{{ person.name }}</span></h1>
+                <h2>{{ person.Job_role }}</h2>
+                <p>Turning Data into Insights & Solutions.</p>
+                <a href="{% url 'contact' %}" class="btn-hire">Hire Me</a>
+                {% endfor %}
+            </div>
+        </div>
     </section>
 
-
-
-    <section class="ftco-about img ftco-section ftco-no-pb" id="about-section" style="padding-top:15% ">
-    	<div class="container">
-			<div class="row">
-				<div class="row d-flex align-items-stretch">
-				<!-- <div class="row d-flex"> -->
-					<div class="col-md-6 col-lg-5 d-flex">
-						<div class="img-about img d-flex align-items-stretch">
-							<div class="overlay">
-								<div class="row" >
-									<div class="col-sm-6 col-md-5">
-									  <div class="about-img" >
-										<img src="{% static 'app/images/about.png' %}" class="img-fluid rounded b-shadow-a" alt="">
-									  </div>
-									</div>
-									<!-- Details next to profile image -->
-									 {% comment '' %}
-									<div class="col-sm-6 col-md-7">
-										
-									  <div class="about-info">
-										
-										<p><span class="title-s">Name: </span> <span>Monalisa</span></p>
-										
-										<p><span class="title-s">Name: </span> <span>Monalisa</span></p>
-										<p><span class="title-s">Experience: </span> <span>5 Years 3 Months</span></p>
-										
-										<p><span class="title-s">Address: </span> <span>Bengaluru, India</span></p>
-										
-									  </div>
-									</div>
-									{% endcomment %}
-								  </div>
-
-								<div class="skill-mf">
-									<p class="title-s">Skills</p>
-									<span>PYTHON</span> <span class="pull-right">97%</span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 95%;" aria-valuenow="95" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-									<span>Django</span> <span class="pull-right">95%</span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 95%;" aria-valuenow="95" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>									
-									<span>SQL</span> <span class="pull-right">90%</span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-									<span>Data Visualization</span> <span class="pull-right">80%</span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-									
-									<span>Statistical Analysis</span> <span class="pull-right">78%</span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-									
-									<span>Machine Learning</span> <span class="pull-right">75%</span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="col-md-6 col-lg-7 pl-lg-5 pb-5">
-						<div class="row justify-content-start pb-3">
-							<div class="col-md-12 heading-section ftco-animate" style="margin-left:100px;">
-								
-								<!--<h1 class="big">About</h1>-->
-								<h2 class="mb-4">About Me</h2>
-								
-								<p style="text-align: justify;">Aspiring Data Analyst and Django Developer with a solid foundation in web development, data science, and analytics. Currently gaining hands-on 
-									experience
-									 through personal projects focused on real-world applications and user-friendly design.Proficient in Django, SQL, Python, and data visualization tools, with a 
-									 growing passion for machine learning, customer behavior analysis, and intuitive admin workflows.</p>
-								<ul class="about-info mt-4 px-md-0 px-2">
-									<li class="d-flex"><span>Profile:</span> <span>Django Developer , Data Science &amp; Analytics</span></li>
-									
-									<li class="d-flex"><span>Education:</span> <span>Bachelor of Computer Science and Engineering</span></li>
-									<li class="d-flex"><span>Language:</span> <span>English, Bangla</span></li>
-									<li class="d-flex"><span>BI Tools:</span> <span>Microsoft Power BI, Looker &amp; Tableau</span></li>
-									<li class="d-flex"><span>Other Skills:</span> <span>Cloud, PySpark, Excel &amp; Git</span></li>
-									<li class="d-flex"><span>Interest:</span> <span>Traveling, Travel Photography, Teaching</span></li>
-									
-								</ul>
-							</div>
-						</div>
-
-						{% comment '' %}
-						<div class="counter-wrap ftco-animate d-flex mt-md-3">
-							<div class="text">
-								
-								<p class="mb-4">
-									<span class="number" data-number="30">0</span> <span>+</span>
-									<span>&nbsp; Projects completed</span>
-								</p>
-								<p><a href="https://www.linkedin.com/in/rishabhnmishra/" class="btn btn-primary py-3 px-3">LinkedIn</a></p>
-							</div>
-						</div>
-						{% endcomment %}
-						
-
-						
-					</div>
-				</div>
-			</div>
-		</div>
+    <!-- My Projects Section -->
+    <section id="projects">
+        <div class="section-title">
+            <h2>My Projects</h2>
+        </div>
+        <div class="card-grid">
+            {% for p in project %}
+            <div class="custom-card">
+                <div class="card-icon-wrapper">
+                    {% if p.project_image %}
+                    <img src="{{ p.project_image.url }}" alt="{{ p.Name }}" class="card-icon">
+                    {% else %}
+                    <i class="fas fa-code fa-3x" style="color: #fff;"></i>
+                    {% endif %}
+                </div>
+                <div class="card-body">
+                    <h3>{{ p.Name }}</h3>
+                    <p>{{ p.sub_title|default:p.category }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </section>
 
-
-
-	
-    
-
-   
-
-
-<section class="ftco-section" id="project-section">
-      <div class="container">
-        <div class="row justify-content-center mb-5 pb-5">
-          <div class="col-md-7 heading-section text-center ftco-animate">
-            <h1 class="big big-2">Projects</h1>
-            <h2 class="mb-4">Projects</h2>
-            <p>Below are the sample Django projects showcasing full-stack development, admin workflows, and user-focused design</p>
-          </div>
+    <!-- Technical Skills Section -->
+    <section id="skills">
+        <div class="section-title">
+            <h2>Technical Skills</h2>
         </div>
-        <div class="row d-flex">
-          <!---start projects-->
-          {% for projects in project %}
-          <div class="col-md-4 d-flex ftco-animate">
-            
-          	<div class="blog-entry justify-content-end" >
-              <a href="{{projects.vedio_link}}" class="block-20 zoom-effect" style="background-image: url('{{ projects.project_image.url }}');">
-              </a>
-              <div class="text mt-3 float-right d-block" >
-
-                <h3 class="heading"><a href="{{projects.vedio_link}}">{{projects.Name}}</a></h3>
-                <p >{{projects.Description}}.</p>
-              </div>
-              
-              <div class="buttons flex s-around" id="button_color_change" >
-                  <a href="{{projects.github_link}}"
-                      target="_blanks" class="btn mx-1 m-top"  >GitHub</a>
-
-                  <a href="{{projects.project_link}}" target="_blanks" class="btn m-top live"  >Live
-                      Link</a>
-              </div>
-              <style>
-                  #button_color_change a {
-                      background-color: rgb(247, 120, 2);
-                      
-                      
-                  }
-                  #button_color_change a{
-                    color:white;
-                  }
-
-                  #button_color_change a:hover {
-                      background-color: aqua;
-                  }
-
-              
-              </style>
-                              
+        <div class="card-grid">
+            {% for s in skills %}
+            <div class="custom-card">
+                <div class="card-icon-wrapper">
+                    {% if s.icon_url %}
+                    <img src="{{ s.icon_url }}" alt="{{ s.name }}" class="card-icon">
+                    {% else %}
+                    <i class="fas fa-laptop-code fa-3x" style="color: #fff;"></i>
+                    {% endif %}
+                </div>
+                <div class="card-body">
+                    <h3>{{ s.name }}</h3>
+                    <p>{{ s.details|truncatechars:50 }}</p>
+                </div>
             </div>
-
-          </div>
-		  {% endfor %}
-        
-
-
-          <!-- end projects-->
-           {% comment "" %}
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <a href="https://github.com/rishabhnmishra/Python_Diwali_Sales_Analysis/blob/main/Diwali_Sales_Analysis.ipynb" class="block-20 zoom-effect" style="background-image: url('images/proj_2.jpg');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-
-                <h3 class="heading"><a href="https://github.com/rishabhnmishra/Python_Diwali_Sales_Analysis/blob/main/Diwali_Sales_Analysis.ipynb">Data Analysis using Python Project for Beginners</a></h3>
-                <p>Performed exploratory data analysis on diwali sales data using Python to improve the customer experience.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry">
-              <a href="https://github.com/rishabhnmishra/Madhav_Store_Analysis_PowerBI/blob/main/Madhav%20Store%20dashboard.jpg" class="block-20 zoom-effect" style="background-image: url('images/proj_3.jpg');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-
-                <h3 class="heading"><a href="https://github.com/rishabhnmishra/Madhav_Store_Analysis_PowerBI/blob/main/Madhav%20Store%20dashboard.jpg">Power BI Sales dashboard Project for Beginners</a></h3>
-                <p>Designed a power bi dashboard for Madhav Store to track and analyze the online sales data acorss India.</p>
-              </div>
-            </div>
-          </div>
-          {% endcomment %}
+            {% endfor %}
         </div>
-	<br>
-  {% comment "" %}
-		<!-- added justify-content-center to center align the last two projects -->
-		<div class="row d-flex justify-content-center">  
-			<div class="col-md-4 d-flex ftco-animate">
-				<div class="blog-entry justify-content-end">
-				<a href="https://github.com/rishabhnmishra/sales_forecasting/tree/main" class="block-20 zoom-effect" style="background-image: url('images/proj_4.jpg');">
-				</a>
-				<div class="text mt-3 float-right d-block">
-  
-				  <h3 class="heading"><a href="https://github.com/rishabhnmishra/sales_forecasting/tree/main">Sales Forecast- Time Series Forecasting</a></h3>
-				  <p>Used multiple machine learning models to forecast sales (retail store) and performed time series analysis.</p>
-				</div>
-			  </div>
-			</div>
-			<div class="col-md-4 d-flex ftco-animate">
-				<div class="blog-entry justify-content-end">
-				<a href="https://github.com/rishabhnmishra/customer_segmentation/blob/main/Customer_Segmentation-final.ipynb" class="block-20 zoom-effect" style="background-image: url('images/proj_5.jpg');">
-				</a>
-				<div class="text mt-3 float-right d-block">
-  
-				  <h3 class="heading"><a href="https://github.com/rishabhnmishra/customer_segmentation/blob/main/Customer_Segmentation-final.ipynb">Customer Segmentation using clustering model</a></h3>
-				  <p>Developed a ML model to give various recommendations of financial products &amp; services on target customer groups.</p>
-				</div>
-			  </div>
-			</div>
-		 </div>
-	  </div>
+    </section>
 
-    {% endcomment %}
-</section>
-{% comment "" %}
-	<section class="ftco-section ftco-no-pt ftco-no-pb ftco-counter img" id="section-counter">
-      <div class="container">
-		<div class="row d-md-flex align-items-center">
-          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number" data-number="20">0</strong>
-                <span>Achievements</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number" data-number="30">0</strong>
-                <span>Projects</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number" data-number="1000">0</strong>
-                <span>Mentored Students</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number" data-number="500">0</strong>
-                <span>Cups of coffee</span>
-              </div>
-            </div>
-          </div>
+    <!-- Latest Blogs Section -->
+    <section id="blogs">
+        <div class="section-title">
+            <h2>Latest Blogs</h2>
         </div>
-      </div>
-
-	
-	  <div class="ftco-section ftco-hireme img margin-top" style="background-image: url(images/bg_1.jpg)">
-			<!-- <div class="container"> -->
-				<div class="row justify-content-center">
-					<div class="col-md-7 ftco-animate text-center">
-						<h2>More projects on<span> Github  </span> </h2>
-						<div class="heading"> <h4> I love to solve business problems &amp; uncover hidden data stories </h4>
-						<br>
-						<p><a href="https://github.com/rishabhnmishra" class="btn btn-primary py-3 px-5">GitHub</a></p>
-						</div>
-					</div>
-				</div>
-			<!-- </div> -->
-		</div>
-	</section>
-{% endcomment %}
-
-
-
-  <section class="ftco-section contact-section ftco-no-pb" id="contact-section">
-      <div class="container">
-      	<div class="row justify-content-center mb-5 pb-3">
-          <div class="col-md-7 heading-section text-center ftco-animate">
-            <h1 class="big big-2">Contact</h1>
-            <h2 class="mb-4">Contact Me</h2>
-            <p>Below are the details to reach out to me!</p>
-          </div>
+        <div class="card-grid">
+            {% for b in blogs %}
+            <div class="custom-card">
+                <div class="card-icon-wrapper">
+                    {% if b.image_url %}
+                    <img src="{{ b.image_url }}" alt="{{ b.title }}" class="card-icon">
+                    {% else %}
+                    <i class="fas fa-blog fa-3x" style="color: #fff;"></i>
+                    {% endif %}
+                </div>
+                <div class="card-body">
+                    <h3>{{ b.title }}</h3>
+                    <p>{{ b.category }}</p>
+                </div>
+            </div>
+            {% endfor %}
         </div>
-		{% for data in data %}
-        <div class="row d-flex contact-info mb-5">
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-          	<div class="align-self-stretch box p-4 text-center">
-          		<div class="icon d-flex align-items-center justify-content-center">
-          			<span class="icon-map-signs"></span>
-          		</div>
-          		<h3 class="mb-4">Address</h3>
-	            <p>{{data.address}}</p>
-	          </div>
-          </div>
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-          	<div class="align-self-stretch box p-4 text-center">
-          		<div class="icon d-flex align-items-center justify-content-center">
-          			<span class="icon-phone2"></span>
-          		</div>
-          		<h3 class="mb-4">Contact Number</h3>
-	            <p><a href="#">+880{{data.phone_number}}</a></p>
-	          </div>
-          </div>
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-          	<div class="align-self-stretch box p-4 text-center">
-          		<div class="icon d-flex align-items-center justify-content-center">
-          			<span class="icon-paper-plane"></span>
-          		</div>
-          		<h3 class="mb-4">Email Address</h3>
-	            <p><a href="#">{{data.email_address}}</a></p>
-	          </div>
-          </div>
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-          	<div class="align-self-stretch box p-4 text-center">
-          		<div class="icon d-flex align-items-center justify-content-center">
-          			<span class="icon-globe"></span>
-          		</div>
-          		<h3 class="mb-4">Download Resume</h3>
-	            <p><a href="{{data.reusme_link}}">resumelink</a></p>
-	          </div>
-          </div>
-		  {% endfor %}
-
-		  <div class="container">
-			<br>
-			<br>
-			{% comment "" %}
-			<div class="row justify-content-center">
-				<div class="col-md-7 ftco-animate text-center">
-					<h2>Have a<span> Question?  </span> <a href="https://forms.gle/uLaTShUKXraAvHJ77" class="btn btn-primary py-3 px-5">Click Here</a> </h2>
-				</div>
-			</div>
-			{% endcomment %}
-				
-		   </div>
-   </div>
- </section>
+        <a href="{% url 'blogs' %}" class="btn-read-more">Read More</a>
+    </section>
+</div>
 {% endblock main-content %}
-
- 
-	
-   
-
-

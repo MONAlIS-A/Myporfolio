@@ -1,6 +1,6 @@
 {% extends 'common_code/base.html' %}
 {% load static %}
-{% block title %} My Blogs {% endblock title %}
+{% block title %} My Skills {% endblock title %}
 
 {% block style %}
 <style>
@@ -16,7 +16,7 @@
     }
 
     /* Hero Section */
-    .blog-hero {
+    .skills-hero {
         background: radial-gradient(circle at 50% 30%, #4a148c 0%, #2d1b69 60%, #0b0b1a 100%);
         padding: 120px 0 80px;
         position: relative;
@@ -25,7 +25,7 @@
         text-align: center;
     }
 
-    .blog-hero::before {
+    .skills-hero::before {
         content: "";
         position: absolute;
         top: 0; left: 0; right: 0; bottom: 0;
@@ -42,7 +42,7 @@
         to { background-position: 400px 400px; }
     }
 
-    .blog-title-container h1 {
+    .skills-title-container h1 {
         font-size: 3.5rem;
         font-weight: 700;
         display: flex;
@@ -53,8 +53,8 @@
         z-index: 2;
     }
 
-    .blog-title-container h1::before,
-    .blog-title-container h1::after {
+    .skills-title-container h1::before,
+    .skills-title-container h1::after {
         content: "";
         height: 2px;
         width: 120px;
@@ -70,8 +70,8 @@
         display: inline-block;
     }
 
-    /* Blogs Grid */
-    .blogs-grid {
+    /* Skills Grid */
+    .skills-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 15px;
@@ -82,15 +82,19 @@
     }
 
     @media (max-width: 1200px) {
-        .blogs-grid { grid-template-columns: repeat(2, 1fr); }
+        .skills-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
     }
 
     @media (max-width: 768px) {
-        .blogs-grid { grid-template-columns: 1fr; }
+        .skills-grid {
+            grid-template-columns: 1fr;
+        }
     }
 
-    /* Blog Card */
-    .blog-card {
+    /* Skill Card */
+    .skill-card {
         background: #fff;
         border-radius: 20px;
         overflow: hidden;
@@ -102,16 +106,16 @@
         border: 1px solid rgba(255,255,255,0.8);
     }
 
-    .blog-card:hover {
+    .skill-card:hover {
         transform: translateY(-15px);
         box-shadow: 0 20px 40px rgba(0,0,0,0.15);
     }
 
-    .blog-card-header {
+    .skill-card-header {
         padding: 25px 15px;
         text-align: center;
         color: #fff;
-        font-size: 1.5rem;
+        font-size: 1.6rem;
         font-weight: 700;
         line-height: 1.2;
         min-height: 120px;
@@ -121,7 +125,7 @@
         position: relative;
     }
 
-    .blog-card-header::after {
+    .skill-card-header::after {
         content: "";
         position: absolute;
         bottom: 0;
@@ -137,99 +141,91 @@
     .bg-data-ana { background: linear-gradient(135deg, #9a3412 0%, #f97316 100%); }
     .bg-ai { background: linear-gradient(135deg, #701a75 0%, #d946ef 100%); }
 
-    .blog-image-area {
-        padding: 30px 20px;
+    .skill-logos-area {
+        padding: 40px 20px;
         display: flex;
+        flex-wrap: wrap;
         justify-content: center;
         align-items: center;
+        gap: 20px;
         background: #fafbff;
+        flex-grow: 0;
         min-height: 180px;
         border-bottom: 1px solid #f0f0f0;
     }
 
-    .blog-image-area img {
-        max-width: 100%;
-        max-height: 120px;
+    .skill-logo-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .skill-logo-item img {
+        width: 60px;
+        height: 60px;
         object-fit: contain;
         filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
     }
 
-    .blog-details-area {
+    .skill-logo-item span {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #555;
+    }
+
+    .skill-details-area {
         padding: 20px;
         background: #fff;
         flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
     }
 
-    .blog-summary-list {
+    .skill-details-list {
         list-style: none;
         padding: 0;
-        margin: 0 0 20px;
+        margin: 0;
     }
 
-    .blog-summary-list li {
-        margin-bottom: 12px;
+    .skill-details-list li {
+        margin-bottom: 15px;
         padding-left: 25px;
         position: relative;
-        font-size: 0.95rem;
+        font-size: 1rem;
         color: #444;
         font-weight: 500;
     }
 
-    .blog-summary-list li::before {
-        content: "▶";
+    .skill-details-list li::before {
+        content: "";
         position: absolute;
         left: 0;
-        top: 2px;
-        font-size: 0.8rem;
+        top: 8px;
+        width: 8px;
+        height: 8px;
+        border-radius: 2px;
     }
 
     /* Bullet Colors */
-    .bullet-backend li::before { color: #3b82f6; }
-    .bullet-data-eng li::before { color: #10b981; }
-    .bullet-data-ana li::before { color: #f97316; }
-    .bullet-ai li::before { color: #d946ef; }
-
-    .read-more-btn {
-        display: inline-block;
-        padding: 10px 25px;
-        border-radius: 50px;
-        color: #fff;
-        font-weight: 700;
-        text-decoration: none !important;
-        text-align: center;
-        transition: all 0.3s;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    }
-
-    .read-more-btn:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-        color: #fff;
-    }
-
-    .btn-backend { background: #1e3a8a; }
-    .btn-data-eng { background: #065f46; }
-    .btn-data-ana { background: #9a3412; }
-    .btn-ai { background: #701a75; }
+    .bullet-backend li::before { background: #3b82f6; }
+    .bullet-data-eng li::before { background: #10b981; }
+    .bullet-data-ana li::before { background: #f97316; }
+    .bullet-ai li::before { background: #d946ef; }
 
     @media (max-width: 768px) {
-        .blog-title-container h1 { font-size: 2.2rem; }
-        .blog-title-container h1::before, .blog-title-container h1::after { width: 40px; }
+        .skills-title-container h1 { font-size: 2.2rem; }
+        .skills-title-container h1::before, .skills-title-container h1::after { width: 40px; }
     }
 </style>
 {% endblock style %}
 
 {% block main-content %}
-<section class="blog-page">
-    <div class="blog-hero">
+<section class="skills-page">
+    <div class="skills-hero">
         <div class="container">
-            <div class="blog-title-container" data-aos="fade-down">
+            <div class="skills-title-container" data-aos="fade-down">
                 <h1>
                     <span class="title-dot"></span>
-                    My Blogs
+                    My Skills
                     <span class="title-dot"></span>
                 </h1>
             </div>
@@ -237,63 +233,53 @@
     </div>
 
     <div class="container-fluid px-md-5">
-        <div class="blogs-grid">
-            {% regroup blogs by get_category_display as category_list %}
+        <div class="skills-grid">
+            {% regroup skills by get_category_display as category_list %}
             
             {% for group in category_list %}
-            <div class="blog-card" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:100 }}">
-                <div class="blog-card-header 
-                    {% if group.grouper == 'Backend Tips & Tutorials' %}bg-backend
-                    {% elif group.grouper == 'Data Engineering Insights' %}bg-data-eng
-                    {% elif group.grouper == 'Data Analyst Guides' %}bg-data-ana
-                    {% elif group.grouper == 'AI & ML Innovations' %}bg-ai
+            <div class="skill-card" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:100 }}">
+                <div class="skill-card-header 
+                    {% if group.grouper == 'Backend Development' %}bg-backend
+                    {% elif group.grouper == 'Data Engineering' %}bg-data-eng
+                    {% elif group.grouper == 'Data Analysis' %}bg-data-ana
+                    {% elif group.grouper == 'Data Science & AI' %}bg-ai
                     {% endif %}">
                     {{ group.grouper }}
                 </div>
                 
-                <div class="blog-image-area">
-                    {% with group.list|first as first_blog %}
-                        {% if first_blog.image_url %}
-                            <img src="{{ first_blog.image_url }}" alt="{{ group.grouper }}">
-                        {% else %}
-                            <div style="font-size: 3rem; color: #ccc;"><i class="fas fa-blog"></i></div>
+                <div class="skill-logos-area">
+                    {% for skill in group.list %}
+                        {% if skill.icon_url %}
+                        <div class="skill-logo-item">
+                            <img src="{{ skill.icon_url }}" alt="{{ skill.name }}">
+                            <span>{{ skill.name }}</span>
+                        </div>
                         {% endif %}
-                    {% endwith %}
+                    {% endfor %}
                 </div>
 
-                <div class="blog-details-area">
-                    <ul class="blog-summary-list 
-                        {% if group.grouper == 'Backend Tips & Tutorials' %}bullet-backend
-                        {% elif group.grouper == 'Data Engineering Insights' %}bullet-data-eng
-                        {% elif group.grouper == 'Data Analyst Guides' %}bullet-data-ana
-                        {% elif group.grouper == 'AI & ML Innovations' %}bullet-ai
+                <div class="skill-details-area">
+                    <ul class="skill-details-list 
+                        {% if group.grouper == 'Backend Development' %}bullet-backend
+                        {% elif group.grouper == 'Data Engineering' %}bullet-data-eng
+                        {% elif group.grouper == 'Data Analysis' %}bullet-data-ana
+                        {% elif group.grouper == 'Data Science & AI' %}bullet-ai
                         {% endif %}">
-                        {% for blog in group.list %}
-                            {% for point in blog.get_summary_list %}
-                                <li>{{ point }}</li>
+                        {% for skill in group.list %}
+                            {% for detail in skill.get_details_list %}
+                                <li>{{ detail }}</li>
                             {% endfor %}
                         {% endfor %}
                     </ul>
-
-                    {% with group.list|first as first_blog %}
-                    <a href="{{ first_blog.link }}" class="read-more-btn 
-                        {% if group.grouper == 'Backend Tips & Tutorials' %}btn-backend
-                        {% elif group.grouper == 'Data Engineering Insights' %}btn-data-eng
-                        {% elif group.grouper == 'Data Analyst Guides' %}btn-data-ana
-                        {% elif group.grouper == 'AI & ML Innovations' %}btn-ai
-                        {% endif %}">
-                        Read More
-                    </a>
-                    {% endwith %}
                 </div>
             </div>
             {% endfor %}
         </div>
 
-        {% if not blogs %}
+        {% if not skills %}
         <div class="text-center py-5">
-            <h3 class="text-muted">No blogs found. Please add them from the Admin panel!</h3>
-            <p>Example: Backend -> API Development Best Practices</p>
+            <h3 class="text-muted">No skills found. Please add them from the Admin panel!</h3>
+            <p>Example: Backend -> Python (Icon URL, Details: Scalable API Platform)</p>
         </div>
         {% endif %}
     </div>

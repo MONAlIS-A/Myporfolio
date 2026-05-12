@@ -1,128 +1,568 @@
 {% extends 'common_code/base.html' %}
 {% load static %}
-{% block title %} About {% endblock title %}
+{% block title %} About Me {% endblock title %}
 
+{% block style %}
+<style>
+	:root {
+		--primary-bg: #4a148c;
+		--secondary-bg: #f3e5f5;
+		--accent-color: #7b1fa2;
+		--glass-bg: rgba(255, 255, 255, 0.7);
+		--glass-border: rgba(255, 255, 255, 0.4);
+		--text-color: #333;
+		--hero-text: #ffffff;
+		--accent-gradient: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+		--card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+	}
 
-{% block main-content %}  
+	body {
+		background-color: var(--secondary-bg);
+		color: var(--text-color);
+		font-family: 'Poppins', sans-serif;
+	}
 
+	.about-page {
+		padding: 0;
+		min-height: 100vh;
+		background: linear-gradient(180deg, #f8f9ff 0%, #e0e7ff 100%);
+	}
 
-    <section class="ftco-about img ftco-section ftco-no-pb" id="about-section" style="padding-top:15% ">
-    	<div class="container">
-			<div class="row">
-				<div class="row d-flex align-items-stretch">
-				<!-- <div class="row d-flex"> -->
-					<div class="col-md-6 col-lg-5 d-flex">
-						<div class="img-about img d-flex align-items-stretch">
-							<div class="overlay">
-								<div class="row" >
-									<div class="col-sm-6 col-md-5">
-									  <div class="about-img" >
-										<img src="{% static 'app/images/about.png' %}" class="img-fluid rounded b-shadow-a" alt="">
-									  </div>
-									</div>
-									<!-- Details next to profile image -->
-									 {% comment '' %}
-									<div class="col-sm-6 col-md-7">
-										
-									  <div class="about-info">
-										
-										<p><span class="title-s">Name: </span> <span>Monalisa</span></p>
-										
-										<p><span class="title-s">Name: </span> <span>Monalisa</span></p>
-										<p><span class="title-s">Experience: </span> <span>5 Years 3 Months</span></p>
-										
-										<p><span class="title-s">Address: </span> <span>Bengaluru, India</span></p>
-										
-									  </div>
-									</div>
-									{% endcomment %}
-								  </div>
+	/* Galactic Header Section */
+	.hero-section {
+		background: radial-gradient(circle at 20% 30%, #4a148c 0%, #2d1b69 50%, #0b0b1a 100%);
+		padding: 200px 0 0;
+		/* Further increased padding to move content down */
+		position: relative;
+		overflow: hidden;
+		color: var(--hero-text);
+	}
 
-								<div class="skill-mf">
-									<p class="title-s">Skills</p>
-									<span>PYTHON</span> <span class="pull-right">97%</span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 95%;" aria-valuenow="95" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-									<span>Django</span> <span class="pull-right">95%</span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 95%;" aria-valuenow="95" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>									
-									<span>SQL</span> <span class="pull-right">90%</span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-									<span>Data Visualization</span> <span class="pull-right">80%</span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-									
-									<span>Statistical Analysis</span> <span class="pull-right">78%</span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-									
-									<span>Machine Learning</span> <span class="pull-right">75%</span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-								</div>
-							</div>
-						</div>
+	.hero-section::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-image:
+			radial-gradient(white, rgba(255, 255, 255, .2) 2px, transparent 40px),
+			radial-gradient(white, rgba(255, 255, 255, .15) 1px, transparent 30px),
+			radial-gradient(white, rgba(255, 255, 255, .1) 2px, transparent 40px);
+		background-size: 550px 550px, 350px 350px, 250px 250px;
+		background-position: 0 0, 40px 60px, 130px 270px;
+		opacity: 0.3;
+		animation: stars-animation 100s linear infinite;
+	}
+
+	@keyframes stars-animation {
+		from {
+			background-position: 0 0, 40px 60px, 130px 270px;
+		}
+
+		to {
+			background-position: 550px 550px, 390px 410px, 680px 820px;
+		}
+	}
+
+	.hero-section::after {
+		content: "";
+		position: absolute;
+		top: -50%;
+		left: -50%;
+		width: 200%;
+		height: 200%;
+		background: radial-gradient(circle, rgba(123, 31, 162, 0.2) 0%, transparent 50%);
+		animation: nebula-float 20s ease-in-out infinite alternate;
+	}
+
+	@keyframes nebula-float {
+		from {
+			transform: translate(0, 0);
+		}
+
+		to {
+			transform: translate(10%, 10%);
+		}
+	}
+
+	.section-title-white {
+		text-align: center;
+		margin-bottom: 20px;
+	}
+
+	.section-title-white h2 {
+		font-weight: 700;
+		font-size: 2.8rem;
+		position: relative;
+		display: inline-block;
+		padding: 0 40px;
+	}
+
+	.section-title-white h2::before,
+	.section-title-white h2::after {
+		content: "";
+		position: absolute;
+		top: 50%;
+		width: 30px;
+		height: 2px;
+		background: #fff;
+		opacity: 0.5;
+	}
+
+	.section-title-white h2::before {
+		left: 0;
+	}
+
+	.section-title-white h2::after {
+		right: 0;
+	}
+
+	/* Floating Hero Layout */
+	.hero-layout {
+		display: flex;
+		align-items: flex-end;
+		gap: 60px;
+		max-width: 1100px;
+		margin: 0 auto;
+		position: relative;
+		z-index: 1;
+	}
+
+	.profile-img-floating {
+		flex: 0 0 420px;
+		position: relative;
+		display: flex;
+		align-items: flex-start; /* Align to top */
+		transform: translateY(-120px); /* Adjust vertical position */
+	}
+
+	.profile-img-floating img {
+		width: 100%;
+		height: auto;
+		max-height: 550px; /* Set a substantial max-height */
+		display: block;
+		object-fit: contain;
+		/* No border or box as per user request */
+		filter: drop-shadow(10px 0 20px rgba(0, 0, 0, 0.2));
+	}
+
+	.hero-content-area {
+		flex: 1;
+		padding-bottom: 60px;
+	}
+
+	.hero-content-area h1 {
+		font-size: 4.5rem;
+		font-weight: 800;
+		margin-bottom: 5px;
+		letter-spacing: -1px;
+	}
+
+	.hero-content-area .roles {
+		font-size: 1.4rem;
+		opacity: 0.9;
+		margin-bottom: 30px;
+		line-height: 1.4;
+		font-weight: 300;
+	}
+
+	.hero-content-area .bio-box {
+		background: rgba(255, 255, 255, 0.1);
+		backdrop-filter: blur(10px);
+		padding: 25px 35px;
+		border-radius: 20px;
+		font-size: 1.2rem;
+		margin-bottom: 35px;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		max-width: 650px;
+	}
+
+	.download-cv-btn {
+		background: #3a4bb2;
+		color: #fff;
+		padding: 14px 45px;
+		border-radius: 50px;
+		font-weight: 700;
+		text-decoration: none;
+		display: inline-block;
+		transition: all 0.3s ease;
+		box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+		text-transform: uppercase;
+		letter-spacing: 1px;
+	}
+
+	.download-cv-btn:hover {
+		transform: translateY(-3px);
+		background: #2d3a8c;
+		color: #fff;
+		box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+	}
+
+	/* Content Area */
+	.content-area {
+		padding: 80px 0;
+		background: #fdfdff;
+	}
+
+	.info-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 30px;
+		margin-bottom: 60px;
+	}
+
+	.info-card {
+		background: #fff;
+		border-radius: 20px;
+		overflow: hidden;
+		box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+		border: 1px solid #eef2ff;
+	}
+
+	.info-card-header {
+		background: #eef2ff;
+		padding: 20px 30px;
+		display: flex;
+		align-items: center;
+		gap: 15px;
+		border-bottom: 1px solid #e0e7ff;
+	}
+
+	.info-card-header i {
+		font-size: 1.8rem;
+		color: #4a148c;
+	}
+
+	.info-card-header h3 {
+		margin: 0;
+		font-weight: 700;
+		color: #2d1b69;
+		font-size: 1.4rem;
+	}
+
+	.info-list {
+		list-style: none;
+		padding: 30px;
+		margin: 0;
+	}
+
+	.info-list li {
+		margin-bottom: 20px;
+		padding-left: 20px;
+		position: relative;
+	}
+
+	.info-list li::before {
+		content: "•";
+		position: absolute;
+		left: 0;
+		color: #764ba2;
+		font-size: 1.5rem;
+		line-height: 1;
+	}
+
+	.info-list .main-text {
+		font-weight: 700;
+		display: block;
+		color: #2d1b69;
+		font-size: 1.2rem;
+		margin-bottom: 5px;
+	}
+
+	.info-list .sub-text {
+		color: #666;
+		font-size: 1rem;
+	}
+
+	/* Expertise Grid */
+	.expertise-title {
+		text-align: center;
+		margin-bottom: 50px;
+	}
+
+	.expertise-title h2 {
+		display: inline-block;
+		padding: 0 30px;
+		position: relative;
+		font-weight: 800;
+		color: #2d1b69;
+		font-size: 2.2rem;
+	}
+
+	.expertise-title h2::before,
+	.expertise-title h2::after {
+		content: "—";
+		padding: 0 10px;
+		color: #764ba2;
+	}
+
+	.expertise-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+		gap: 25px;
+		margin-bottom: 60px;
+	}
+
+	.expertise-card {
+		background: #fff;
+		border-radius: 20px;
+		overflow: hidden;
+		box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+		text-align: center;
+		padding-bottom: 25px;
+		transition: transform 0.3s ease;
+		border: 1px solid #f0f0f0;
+	}
+
+	.expertise-card:hover {
+		transform: translateY(-10px);
+	}
+
+	.exp-header {
+		padding: 15px;
+		color: #fff;
+		font-weight: 700;
+		font-size: 1.1rem;
+	}
+
+	.exp-body {
+		padding: 30px;
+	}
+
+	.exp-icon-img {
+		width: 100px;
+		height: 100px;
+		margin: 0 auto;
+	}
+
+	.exp-footer {
+		padding: 0 20px;
+	}
+
+	.exp-btn {
+		background: #f3f4ff;
+		color: #2d1b69;
+		padding: 8px 20px;
+		border-radius: 50px;
+		font-size: 0.9rem;
+		font-weight: 700;
+		display: inline-block;
+	}
+
+	/* Card Colors */
+	.bg-blue {
+		background: #1e40af;
+	}
+
+	.bg-teal {
+		background: #0f766e;
+	}
+
+	.bg-orange {
+		background: #c2410c;
+	}
+
+	.bg-purple {
+		background: #6d28d9;
+	}
+
+	/* Vision Banner */
+	.vision-banner {
+		background: #fff;
+		border-radius: 20px;
+		padding: 30px 45px;
+		display: flex;
+		align-items: center;
+		gap: 30px;
+		box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
+		border: 1px solid #eef2ff;
+		max-width: 1000px;
+		margin: 0 auto;
+	}
+
+	.vision-icon {
+		width: 80px;
+		height: 80px;
+		background: #eef2ff;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 2.2rem;
+		color: #2d1b69;
+		border: 4px solid #fff;
+		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+	}
+
+	.vision-text {
+		font-size: 1.4rem;
+		font-weight: 600;
+		color: #2d1b69;
+		line-height: 1.4;
+	}
+
+	/* Responsive */
+	@media (max-width: 991px) {
+		.hero-layout {
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+		}
+
+		.hero-content-area {
+			padding-bottom: 40px;
+			text-align: center;
+		}
+
+		.info-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.profile-img-floating {
+			flex: 0 0 auto;
+			width: 280px;
+		}
+
+		.hero-content-area h1 {
+			font-size: 3.5rem;
+		}
+	}
+</style>
+{% endblock style %}
+
+{% block main-content %}
+<div class="about-page">
+	<!-- Galactic Hero Section -->
+	<section class="hero-section">
+		<div class="container">
+			<div class="section-title-white" data-aos="fade-down">
+				<h2>About Me</h2>
+			</div>
+
+			<div class="hero-layout">
+				<!-- Floating Profile Image (No Box) -->
+				<div class="profile-img-floating" data-aos="fade-right">
+					<img src="{% static 'app/images/mona2.png' %}" alt="Monalisa">
+				</div>
+
+				<!-- Hero Content Area -->
+				<div class="hero-content-area" data-aos="fade-left">
+					<h1>Monalisa</h1>
+					<p class="roles">
+						AI & Backend Developer | Data Engineer | Machine Learning Specialist
+					</p>
+					<div class="bio-box">
+						Turning data into scalable, intelligent solutions with Python, Django, and AI automation.
 					</div>
-					
-					<div class="col-md-6 col-lg-7 pl-lg-5 pb-5">
-						<div class="row justify-content-start pb-3">
-							<div class="col-md-12 heading-section ftco-animate" style="margin-left:100px;">
-								
-								<h1 class="big">About</h1>
-								<h2 class="mb-4">About Me</h2>
-								
-								<p style="text-align: justify;">Aspiring Data Analyst and Django Developer with a solid foundation in web development, data science, and analytics. Currently gaining hands-on 
-									experience
-									 through personal projects focused on real-world applications and user-friendly design.Proficient in Django, SQL, Python, and data visualization tools, with a 
-									 growing passion for machine learning, customer behavior analysis, and intuitive admin workflows.</p>
-								<ul class="about-info mt-4 px-md-0 px-2">
-									<li class="d-flex"><span>Profile:</span> <span>Django Developer , Data Science &amp; Analytics</span></li>
-									
-									<li class="d-flex"><span>Education:</span> <span>Bachelor of Computer Science and Engineering</span></li>
-									<li class="d-flex"><span>Language:</span> <span>English, Bangla</span></li>
-									<li class="d-flex"><span>BI Tools:</span> <span>Microsoft Power BI, Looker &amp; Tableau</span></li>
-									<li class="d-flex"><span>Other Skills:</span> <span>Cloud, PySpark, Excel &amp; Git</span></li>
-									<li class="d-flex"><span>Interest:</span> <span>Traveling, Travel Photography, Teaching</span></li>
-									
-								</ul>
-							</div>
-						</div>
-
-						{% comment '' %}
-						<div class="counter-wrap ftco-animate d-flex mt-md-3">
-							<div class="text">
-								
-								<p class="mb-4">
-									<span class="number" data-number="30">0</span> <span>+</span>
-									<span>&nbsp; Projects completed</span>
-								</p>
-								<p><a href="https://www.linkedin.com/in/rishabhnmishra/" class="btn btn-primary py-3 px-3">LinkedIn</a></p>
-							</div>
-						</div>
-						{% endcomment %}
-						
-
-						
-					</div>
+					<a href="#" class="download-cv-btn">
+						<i class="fas fa-download mr-2"></i> Download CV
+					</a>
 				</div>
 			</div>
 		</div>
-    </section>
+	</section>
 
+	<!-- Info Section -->
+	<div class="content-area">
+		<div class="container">
+			<div class="info-grid">
+				<!-- Education -->
+				<div class="info-card" data-aos="fade-up" data-aos-delay="100">
+					<div class="info-card-header">
+						<i class="fas fa-graduation-cap"></i>
+						<h3>Education</h3>
+					</div>
+					<ul class="info-list">
+						<li>
+							<span class="main-text">University of South Asia</span>
+							<span class="sub-text">B.Sc. in CSE | CGPA: 3.90</span>
+						</li>
+					</ul>
+				</div>
 
+				<!-- Experience -->
+				<div class="info-card" data-aos="fade-up" data-aos-delay="200">
+					<div class="info-card-header">
+						<i class="fas fa-briefcase"></i>
+						<h3>Experience</h3>
+					</div>
+					<ul class="info-list">
+						<li>
+							<span class="main-text">BeUp In-Tech</span>
+						</li>
+						<li>
+							<span class="main-text">Betopia Group</span>
+							<span class="sub-text">AI & Backend Developer</span>
+						</li>
+					</ul>
+				</div>
+			</div>
 
+			<!-- Expertise -->
+			<div class="expertise-title" data-aos="fade-up">
+				<h2>Core Expertise</h2>
+			</div>
+			<div class="expertise-grid">
+				<!-- Backend -->
+				<div class="expertise-card" data-aos="zoom-in" data-aos-delay="100">
+					<div class="exp-header bg-blue">Backend Development</div>
+					<div class="exp-body">
+						<img src="https://cdn-icons-png.flaticon.com/512/2166/2166823.png" class="exp-icon-img"
+							alt="Backend">
+					</div>
+					<div class="exp-footer">
+						<span class="exp-btn">Backend Systems</span>
+					</div>
+				</div>
+				<!-- Data Engineering -->
+				<div class="expertise-card" data-aos="zoom-in" data-aos-delay="200">
+					<div class="exp-header bg-teal">Data Engineering</div>
+					<div class="exp-body">
+						<img src="https://cdn-icons-png.flaticon.com/512/2752/2752671.png" class="exp-icon-img"
+							alt="Data Engineering">
+					</div>
+					<div class="exp-footer">
+						<span class="exp-btn">ETL & Big Data</span>
+					</div>
+				</div>
+				<!-- Data Analysis -->
+				<div class="expertise-card" data-aos="zoom-in" data-aos-delay="300">
+					<div class="exp-header bg-orange">Data Analysis</div>
+					<div class="exp-body">
+						<img src="https://cdn-icons-png.flaticon.com/512/3222/3222800.png" class="exp-icon-img"
+							alt="Data Analysis">
+					</div>
+					<div class="exp-footer">
+						<span class="exp-btn">Analytics & BI</span>
+					</div>
+				</div>
+				<!-- AI -->
+				<div class="expertise-card" data-aos="zoom-in" data-aos-delay="400">
+					<div class="exp-header bg-purple">AI & Automation</div>
+					<div class="exp-body">
+						<img src="https://cdn-icons-png.flaticon.com/512/2103/2103633.png" class="exp-icon-img"
+							alt="AI">
+					</div>
+					<div class="exp-footer">
+						<span class="exp-btn">ML & Automation</span>
+					</div>
+				</div>
+			</div>
 
+			<!-- Vision -->
+			<div class="expertise-title" data-aos="fade-up">
+				<h2>Vision & Goals</h2>
+			</div>
+			<div class="vision-banner" data-aos="fade-up">
+				<div class="vision-icon">
+					<i class="fas fa-bullseye"></i>
+				</div>
+				<div class="vision-text">
+					Building globally impactful, secure, and scalable AI systems.
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 {% endblock main-content %}

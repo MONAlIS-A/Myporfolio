@@ -1,121 +1,320 @@
 {% extends 'common_code/base.html' %}
 {% load static %}
 {% block title %} Projects {% endblock title %}
-{% block main-content %} 
 
-<section class="ftco-section" id="project-section">
-      <div class="container">
-        <div class="row justify-content-center mb-5 pb-5">
-          <div class="col-md-7 heading-section text-center ftco-animate">
-            <h1 class="big big-2">Projects</h1>
-            <h2 class="mb-4">Projects</h2>
-            <p>Below are the sample Django projects showcasing full-stack development, admin workflows, and user-focused design</p>
-          </div>
+{% block style %}
+<style>
+    :root {
+        --primary-purple: #4a148c;
+        --accent-purple: #7b1fa2;
+        --nav-purple: #6a1b9a;
+        --bg-light: #f5f7ff;
+        --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        --glass-bg: rgba(255, 255, 255, 0.85);
+    }
+
+    body {
+        background-color: #e8eaf6;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    /* Hero Section matching About page */
+    .projects-hero {
+        background: radial-gradient(circle at 50% 30%, #4a148c 0%, #2d1b69 60%, #0b0b1a 100%);
+        padding: 120px 0 80px;
+        position: relative;
+        overflow: hidden;
+        color: #fff;
+        text-align: center;
+    }
+
+    .projects-hero::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background-image: 
+            radial-gradient(white, rgba(255, 255, 255, .2) 1px, transparent 20px),
+            radial-gradient(white, rgba(255, 255, 255, .1) 1px, transparent 30px);
+        background-size: 400px 400px, 300px 300px;
+        opacity: 0.3;
+        animation: stars-move 150s linear infinite;
+    }
+
+    @keyframes stars-move {
+        from { background-position: 0 0; }
+        to { background-position: 400px 400px; }
+    }
+
+    .projects-title-container {
+        position: relative;
+        display: inline-block;
+        z-index: 2;
+    }
+
+    .projects-title-container h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .projects-title-container h1::before,
+    .projects-title-container h1::after {
+        content: "";
+        height: 2px;
+        width: 100px;
+        background: #fff;
+        opacity: 0.5;
+        position: relative;
+    }
+
+    .projects-title-container h1::before {
+        background: linear-gradient(to right, transparent, #fff);
+    }
+    .projects-title-container h1::after {
+        background: linear-gradient(to left, transparent, #fff);
+    }
+
+    .title-dot {
+        width: 10px;
+        height: 10px;
+        background: #fff;
+        border-radius: 50%;
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .dot-left { left: -110px; }
+    .dot-right { right: -110px; }
+
+    /* Category Section */
+    .category-section {
+        margin-bottom: 60px;
+        background: #fff;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: var(--card-shadow);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .category-header {
+        padding: 20px 30px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        color: #fff;
+        font-size: 1.8rem;
+        font-weight: 700;
+        position: relative;
+    }
+
+    .category-header i {
+        font-size: 2rem;
+    }
+
+    /* Specific Category Gradients */
+    .header-backend { background: linear-gradient(90deg, #1e3a8a 0%, #3b82f6 100%); }
+    .header-data-eng { background: linear-gradient(90deg, #065f46 0%, #10b981 100%); }
+    .header-data-ana { background: linear-gradient(90deg, #9a3412 0%, #f97316 100%); }
+    .header-ai-ml { background: linear-gradient(90deg, #701a75 0%, #d946ef 100%); }
+
+    .category-content {
+        padding: 40px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 30px;
+        background: #fdfdff;
+    }
+
+    /* Project Card */
+    .project-card {
+        background: #fff;
+        border-radius: 15px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        border: 1px solid #eee;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .project-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    }
+
+    .project-image-wrapper {
+        height: 200px;
+        overflow: hidden;
+        position: relative;
+        background: #f0f0f0;
+    }
+
+    .project-image-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .project-card:hover .project-image-wrapper img {
+        transform: scale(1.1);
+    }
+
+    .project-info {
+        padding: 25px;
+        text-align: center;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .project-info h3 {
+        margin: 0 0 10px;
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #2d1b69;
+    }
+
+    .project-sub {
+        font-size: 0.9rem;
+        color: #666;
+        margin-bottom: 15px;
+        display: block;
+    }
+
+    .project-desc {
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 20px;
+        line-height: 1.5;
+    }
+
+    .project-links {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .btn-project {
+        padding: 8px 20px;
+        border-radius: 50px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s;
+        font-size: 0.9rem;
+    }
+
+    .btn-github {
+        background: #333;
+        color: #fff;
+    }
+
+    .btn-live {
+        background: #7b1fa2;
+        color: #fff;
+    }
+
+    .btn-project:hover {
+        opacity: 0.9;
+        transform: scale(1.05);
+        color: #fff;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .projects-title-container h1 {
+            font-size: 2.2rem;
+        }
+        .projects-title-container h1::before,
+        .projects-title-container h1::after {
+            width: 40px;
+        }
+    }
+</style>
+{% endblock style %}
+
+{% block main-content %}
+<section class="projects-page">
+    <div class="projects-hero">
+        <div class="container">
+            <div class="projects-title-container" data-aos="fade-down">
+                <h1>My Projects</h1>
+            </div>
+            <p class="mt-4" style="max-width: 700px; margin: 0 auto; opacity: 0.8;">
+                Showcasing my journey through Backend Development, Data Engineering, Analysis, and AI.
+            </p>
         </div>
-        <div class="row d-flex">
-          <!---start projects-->
-          {% for projects in projects %}
-          <div class="col-md-4 d-flex ftco-animate">
-            
-          	<div class="blog-entry justify-content-end" >
-              <a href="{{projects.vedio_link}}" class="block-20 zoom-effect" style="background-image: url('{{ projects.project_image.url }}');">
-              </a>
-              <div class="text mt-3 float-right d-block" >
+    </div>
 
-                <h3 class="heading"><a href="{{projects.vedio_link}}">{{projects.Name}}</a></h3>
-                <p >{{projects.Description}}.</p>
-              </div>
-              
-              <div class="buttons flex s-around" id="button_color_change" >
-                  <a href="{{projects.github_link}}"
-                      target="_blanks" class="btn mx-1 m-top"  >GitHub</a>
-
-                  <a href="{{projects.project_link}}" target="_blanks" class="btn m-top live"  >Live
-                      Link</a>
-              </div>
-              <style>
-                  #button_color_change a {
-                      background-color: rgb(247, 120, 2);
-                      
-                      
-                  }
-                  #button_color_change a{
-                    color:white;
-                  }
-
-                  #button_color_change a:hover {
-                      background-color: aqua;
-                  }
-
-              
-              </style>
-                              
+    <div class="container mt-5 pt-4">
+        {% regroup projects by get_category_display as category_list %}
+        
+        {% if projects %}
+            {% for group in category_list %}
+            <div class="category-section" data-aos="fade-up">
+                <div class="category-header 
+                    {% if group.grouper == 'Backend Projects' %}header-backend
+                    {% elif group.grouper == 'Data Engineering Projects' %}header-data-eng
+                    {% elif group.grouper == 'Data Analysis Projects' %}header-data-ana
+                    {% elif group.grouper == 'AI & Machine Learning Projects' %}header-ai-ml
+                    {% endif %}">
+                    <i class="{% if group.grouper == 'Backend Projects' %}fas fa-server
+                              {% elif group.grouper == 'Data Engineering Projects' %}fas fa-database
+                              {% elif group.grouper == 'Data Analysis Projects' %}fas fa-chart-bar
+                              {% elif group.grouper == 'AI & Machine Learning Projects' %}fas fa-brain
+                              {% endif %}"></i>
+                    {{ group.grouper }}
+                </div>
+                
+                <div class="category-content">
+                    {% for project in group.list %}
+                    <div class="project-card">
+                        <div class="project-image-wrapper">
+                            {% if project.project_image %}
+                                <img src="{{ project.project_image.url }}" alt="{{ project.Name }}">
+                            {% else %}
+                                <div style="width: 100%; height: 100%; background: #eee; display: flex; align-items: center; justify-content: center; color: #ccc;">
+                                    <i class="fas fa-image fa-3x"></i>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="project-info">
+                            <div>
+                                <h3>{{ project.Name }}</h3>
+                                {% if project.sub_title %}
+                                    <span class="project-sub">{{ project.sub_title }}</span>
+                                {% endif %}
+                                <p class="project-desc">{{ project.Description|truncatewords:20 }}</p>
+                            </div>
+                            <div class="project-links">
+                                {% if project.github_link and project.github_link != 'not_available' %}
+                                    <a href="{{ project.github_link }}" target="_blank" class="btn-project btn-github">
+                                        <i class="fab fa-github"></i> GitHub
+                                    </a>
+                                {% endif %}
+                                {% if project.project_link and project.project_link != 'not_available' %}
+                                    <a href="{{ project.project_link }}" target="_blank" class="btn-project btn-live">
+                                        <i class="fas fa-external-link-alt"></i> Live Demo
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
-            
-            
-
-          </div>
-          {% endfor %}
-
-
-          <!-- end projects-->
-           {% comment "" %}
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <a href="https://github.com/rishabhnmishra/Python_Diwali_Sales_Analysis/blob/main/Diwali_Sales_Analysis.ipynb" class="block-20 zoom-effect" style="background-image: url('images/proj_2.jpg');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-
-                <h3 class="heading"><a href="https://github.com/rishabhnmishra/Python_Diwali_Sales_Analysis/blob/main/Diwali_Sales_Analysis.ipynb">Data Analysis using Python Project for Beginners</a></h3>
-                <p>Performed exploratory data analysis on diwali sales data using Python to improve the customer experience.</p>
-              </div>
+            {% endfor %}
+        {% else %}
+            <div class="text-center py-5">
+                <h3>No projects found. Add some from the admin panel!</h3>
             </div>
-          </div>
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry">
-              <a href="https://github.com/rishabhnmishra/Madhav_Store_Analysis_PowerBI/blob/main/Madhav%20Store%20dashboard.jpg" class="block-20 zoom-effect" style="background-image: url('images/proj_3.jpg');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-
-                <h3 class="heading"><a href="https://github.com/rishabhnmishra/Madhav_Store_Analysis_PowerBI/blob/main/Madhav%20Store%20dashboard.jpg">Power BI Sales dashboard Project for Beginners</a></h3>
-                <p>Designed a power bi dashboard for Madhav Store to track and analyze the online sales data acorss India.</p>
-              </div>
-            </div>
-          </div>
-          {% endcomment %}
-        </div>
-	<br>
-  {% comment "" %}
-		<!-- added justify-content-center to center align the last two projects -->
-		<div class="row d-flex justify-content-center">  
-			<div class="col-md-4 d-flex ftco-animate">
-				<div class="blog-entry justify-content-end">
-				<a href="https://github.com/rishabhnmishra/sales_forecasting/tree/main" class="block-20 zoom-effect" style="background-image: url('images/proj_4.jpg');">
-				</a>
-				<div class="text mt-3 float-right d-block">
-  
-				  <h3 class="heading"><a href="https://github.com/rishabhnmishra/sales_forecasting/tree/main">Sales Forecast- Time Series Forecasting</a></h3>
-				  <p>Used multiple machine learning models to forecast sales (retail store) and performed time series analysis.</p>
-				</div>
-			  </div>
-			</div>
-			<div class="col-md-4 d-flex ftco-animate">
-				<div class="blog-entry justify-content-end">
-				<a href="https://github.com/rishabhnmishra/customer_segmentation/blob/main/Customer_Segmentation-final.ipynb" class="block-20 zoom-effect" style="background-image: url('images/proj_5.jpg');">
-				</a>
-				<div class="text mt-3 float-right d-block">
-  
-				  <h3 class="heading"><a href="https://github.com/rishabhnmishra/customer_segmentation/blob/main/Customer_Segmentation-final.ipynb">Customer Segmentation using clustering model</a></h3>
-				  <p>Developed a ML model to give various recommendations of financial products &amp; services on target customer groups.</p>
-				</div>
-			  </div>
-			</div>
-		 </div>
-	  </div>
-
-    {% endcomment %}
+        {% endif %}
+    </div>
 </section>
-
-
-
-{% endblock main-content %}
+{% endblock main-content %}

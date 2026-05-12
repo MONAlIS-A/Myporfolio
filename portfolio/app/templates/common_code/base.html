@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="{% static 'app/css/flaticon.css' %}">
     <link rel="stylesheet" href="{% static 'app/css/icomoon.css' %}">
     <link rel="stylesheet" href="{% static 'app/css/style.css' %}">
-	<link rel="stylesheet" href="{% static 'app/css/my_style.css'}">
+	<link rel="stylesheet" href="{% static 'app/css/my_style.css' %}">
   {% block style %} {% endblock style %}
   </head>
 
@@ -31,6 +31,29 @@
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 	  
 	  
+    <style>
+        #ftco-navbar {
+            background: rgba(106, 27, 154, 0.95) !important;
+            backdrop-filter: blur(10px);
+            padding: 10px 0;
+        }
+        #ftco-navbar .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: #fff !important;
+        }
+        #ftco-navbar .nav-link {
+            color: rgba(255, 255, 255, 0.8) !important;
+            font-weight: 500;
+            padding: 10px 20px !important;
+            transition: all 0.3s;
+        }
+        #ftco-navbar .nav-link:hover, #ftco-navbar .nav-item.active .nav-link {
+            color: #fff !important;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+        }
+    </style>
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
 	    <div class="container">
 	      <a class="navbar-brand" href="{% url 'home' %}">Monalisa</a>
@@ -43,7 +66,8 @@
 	          <li class="nav-item"><a href="{% url 'home' %}" class="nav-link"><span>Home</span></a></li>
 	          <li class="nav-item"><a href="{% url 'about' %}" class="nav-link"><span>About</span></a></li>	          
 	          <li class="nav-item"><a href="{% url 'projects' %}" class="nav-link"><span>Projects</span></a></li>
-	          <li class="nav-item"><a href="{% url 'contact' %}" class="nav-link"><span>Contact</span></a></li>
+	          <li class="nav-item"><a href="{% url 'skills' %}" class="nav-link"><span>Skills</span></a></li>
+              <li class="nav-item"><a href="{% url 'blogs' %}" class="nav-link"><span>Blogs</span></a></li>
 	        </ul>
 	      </div>
 	    </div>
@@ -56,9 +80,31 @@
 	
     <footer class="ftco-footer ftco-section">
 		<div class="container">
-		  <div class="row">
+		  <div class="row mb-5">
 			<div class="col-md-12 text-center">
-  
+			  <div class="footer-nav mb-4">
+				<ul class="d-flex justify-content-center list-unstyled" style="gap: 20px;">
+				  <li class="nav-item"><a href="{% url 'contact' %}" class="footer-contact-link"><span>Contact</span></a></li>
+				</ul>
+			  </div>
+			  <style>
+				.footer-contact-link {
+					color: rgba(255, 255, 255, 0.8) !important;
+					font-weight: 500;
+					padding: 10px 25px !important;
+					transition: all 0.3s;
+					background: rgba(255, 255, 255, 0.1);
+					border-radius: 50px;
+					text-decoration: none !important;
+					border: 1px solid rgba(255, 255, 255, 0.2);
+				}
+				.footer-contact-link:hover {
+					color: #fff !important;
+					background: rgba(255, 255, 255, 0.2);
+					box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+					transform: translateY(-2px);
+				}
+			  </style>
 			  <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 	Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 	<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
