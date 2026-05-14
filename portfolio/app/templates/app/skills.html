@@ -10,10 +10,12 @@
         --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     }
 
-    body {
-        background-color: #eef2ff;
-        font-family: 'Poppins', sans-serif;
-    }
+	body {
+		background: #0f0c29;
+		background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+		color: #fff;
+		font-family: 'Poppins', sans-serif;
+	}
 
     /* Hero Section */
     .skills-hero {
@@ -95,20 +97,22 @@
 
     /* Skill Card */
     .skill-card {
-        background: #fff;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
         border-radius: 20px;
         overflow: hidden;
         display: flex;
         flex-direction: column;
-        box-shadow: var(--card-shadow);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         min-height: 550px;
-        border: 1px solid rgba(255,255,255,0.8);
+        border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .skill-card:hover {
         transform: translateY(-15px);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        background: rgba(255, 255, 255, 0.08);
     }
 
     .skill-card-header {
@@ -148,10 +152,10 @@
         justify-content: center;
         align-items: center;
         gap: 20px;
-        background: #fafbff;
+        background: rgba(255, 255, 255, 0.02);
         flex-grow: 0;
         min-height: 180px;
-        border-bottom: 1px solid #f0f0f0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .skill-logo-item {
@@ -171,12 +175,12 @@
     .skill-logo-item span {
         font-size: 0.85rem;
         font-weight: 600;
-        color: #555;
+        color: rgba(255, 255, 255, 0.8);
     }
 
     .skill-details-area {
         padding: 20px;
-        background: #fff;
+        background: transparent;
         flex-grow: 1;
     }
 
@@ -191,7 +195,7 @@
         padding-left: 25px;
         position: relative;
         font-size: 1rem;
-        color: #444;
+        color: rgba(255, 255, 255, 0.8);
         font-weight: 500;
     }
 

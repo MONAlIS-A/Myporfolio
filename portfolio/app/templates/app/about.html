@@ -17,15 +17,15 @@
 	}
 
 	body {
-		background-color: var(--secondary-bg);
-		color: var(--text-color);
+		background: #0f0c29;
+		background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+		color: #fff;
 		font-family: 'Poppins', sans-serif;
 	}
 
 	.about-page {
 		padding: 0;
 		min-height: 100vh;
-		background: linear-gradient(180deg, #f8f9ff 0%, #e0e7ff 100%);
 	}
 
 	/* Galactic Header Section */
@@ -202,7 +202,6 @@
 	/* Content Area */
 	.content-area {
 		padding: 80px 0;
-		background: #fdfdff;
 	}
 
 	.info-grid {
@@ -213,31 +212,32 @@
 	}
 
 	.info-card {
-		background: #fff;
+		background: rgba(255, 255, 255, 0.05);
+		backdrop-filter: blur(10px);
 		border-radius: 20px;
 		overflow: hidden;
-		box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
-		border: 1px solid #eef2ff;
+		box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+		border: 1px solid rgba(255, 255, 255, 0.1);
 	}
 
 	.info-card-header {
-		background: #eef2ff;
+		background: rgba(255, 255, 255, 0.05);
 		padding: 20px 30px;
 		display: flex;
 		align-items: center;
 		gap: 15px;
-		border-bottom: 1px solid #e0e7ff;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 	}
 
 	.info-card-header i {
 		font-size: 1.8rem;
-		color: #4a148c;
+		color: #00d2ff;
 	}
 
 	.info-card-header h3 {
 		margin: 0;
 		font-weight: 700;
-		color: #2d1b69;
+		color: #fff;
 		font-size: 1.4rem;
 	}
 
@@ -265,13 +265,13 @@
 	.info-list .main-text {
 		font-weight: 700;
 		display: block;
-		color: #2d1b69;
+		color: #fff;
 		font-size: 1.2rem;
 		margin-bottom: 5px;
 	}
 
 	.info-list .sub-text {
-		color: #666;
+		color: rgba(255, 255, 255, 0.7);
 		font-size: 1rem;
 	}
 
@@ -286,7 +286,7 @@
 		padding: 0 30px;
 		position: relative;
 		font-weight: 800;
-		color: #2d1b69;
+		color: #fff;
 		font-size: 2.2rem;
 	}
 
@@ -305,14 +305,15 @@
 	}
 
 	.expertise-card {
-		background: #fff;
+		background: rgba(255, 255, 255, 0.05);
+		backdrop-filter: blur(10px);
 		border-radius: 20px;
 		overflow: hidden;
-		box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+		box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 		text-align: center;
 		padding-bottom: 25px;
 		transition: transform 0.3s ease;
-		border: 1px solid #f0f0f0;
+		border: 1px solid rgba(255, 255, 255, 0.1);
 	}
 
 	.expertise-card:hover {
@@ -328,6 +329,7 @@
 
 	.exp-body {
 		padding: 30px;
+		background: rgba(255, 255, 255, 0.02);
 	}
 
 	.exp-icon-img {
@@ -369,14 +371,15 @@
 
 	/* Vision Banner */
 	.vision-banner {
-		background: #fff;
+		background: rgba(255, 255, 255, 0.05);
+		backdrop-filter: blur(10px);
 		border-radius: 20px;
 		padding: 30px 45px;
 		display: flex;
 		align-items: center;
 		gap: 30px;
-		box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
-		border: 1px solid #eef2ff;
+		box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+		border: 1px solid rgba(255, 255, 255, 0.1);
 		max-width: 1000px;
 		margin: 0 auto;
 	}
@@ -384,21 +387,21 @@
 	.vision-icon {
 		width: 80px;
 		height: 80px;
-		background: #eef2ff;
+		background: rgba(255, 255, 255, 0.1);
 		border-radius: 50%;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		font-size: 2.2rem;
-		color: #2d1b69;
-		border: 4px solid #fff;
-		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+		color: #00d2ff;
+		border: 2px solid rgba(255, 255, 255, 0.2);
+		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 	}
 
 	.vision-text {
 		font-size: 1.4rem;
 		font-weight: 600;
-		color: #2d1b69;
+		color: #fff;
 		line-height: 1.4;
 	}
 

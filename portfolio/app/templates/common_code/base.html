@@ -33,25 +33,32 @@
 	  
     <style>
         #ftco-navbar {
-            background: rgba(106, 27, 154, 0.95) !important;
-            backdrop-filter: blur(10px);
-            padding: 10px 0;
-        }
-        #ftco-navbar .navbar-brand {
-            font-weight: 800;
-            font-size: 1.8rem;
-            color: #fff !important;
-        }
-        #ftco-navbar .nav-link {
-            color: rgba(255, 255, 255, 0.8) !important;
-            font-weight: 500;
-            padding: 10px 20px !important;
+            background: rgba(10, 10, 30, 0.8) !important;
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px 0;
             transition: all 0.3s;
         }
-        #ftco-navbar .nav-link:hover, #ftco-navbar .nav-item.active .nav-link {
+        #ftco-navbar .navbar-brand {
+            font-weight: 900;
+            font-size: 2rem;
             color: #fff !important;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 5px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        #ftco-navbar .nav-link {
+            color: rgba(255, 255, 255, 0.7) !important;
+            font-weight: 600;
+            padding: 12px 25px !important;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+        #ftco-navbar .nav-link:hover, #ftco-navbar .nav-item.active .nav-link {
+            color: #00d2ff !important;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50px;
         }
     </style>
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
@@ -78,38 +85,49 @@
 
  	{% endblock %}
 	
-    <footer class="ftco-footer ftco-section">
+    <footer class="ftco-footer ftco-section" style="background: rgba(0, 0, 0, 0.2); backdrop-filter: blur(15px); padding: 70px 0; border-top: 1px solid rgba(255,255,255,0.05);">
 		<div class="container">
-		  <div class="row mb-5">
-			<div class="col-md-12 text-center">
-			  <div class="footer-nav mb-4">
-				<ul class="d-flex justify-content-center list-unstyled" style="gap: 20px;">
-				  <li class="nav-item"><a href="{% url 'contact' %}" class="footer-contact-link"><span>Contact</span></a></li>
+            {% for p in data %}
+		  <div class="row">
+			<div class="col-md-5 mb-4 mb-md-0">
+			  <div class="ftco-footer-widget">
+				<div class="d-flex align-items-center mb-4">
+                    <div style="background: #6a1b9a; width: 45px; height: 45px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-right: 15px; box-shadow: 0 0 20px rgba(106, 27, 154, 0.3);">
+                        <i class="fas fa-user-tie" style="color: #fff; font-size: 1.5rem;"></i>
+                    </div>
+                    <h2 class="footer-heading" style="color: #fff; font-size: 2rem; font-weight: 800; margin: 0; line-height: 1;">{{ p.name }} <span style="display: block; font-size: 0.7rem; font-weight: 400; letter-spacing: 2px; color: rgba(255,255,255,0.6); margin-top: 5px; text-transform: uppercase;">{{ p.Job_role }}</span></h2>
+                </div>
+				<p style="color: rgba(255,255,255,0.7); line-height: 1.8; font-size: 0.95rem; max-width: 400px;">Passionate about turning data into insights and building robust digital solutions. Let's connect and create something amazing together.</p>
+				<ul class="ftco-footer-social list-unstyled mt-5 d-flex" style="gap: 25px;">
+				  <li><a href="{{ p.facebook_link }}" style="color: #fff; font-size: 1.4rem; transition: 0.3s;"><span class="fab fa-facebook"></span></a></li>
+				  <li><a href="{{ p.github_link }}" style="color: #fff; font-size: 1.4rem; transition: 0.3s;"><span class="fab fa-github"></span></a></li>
+				  <li><a href="{{ p.linkedin }}" style="color: #fff; font-size: 1.4rem; transition: 0.3s;"><span class="fab fa-linkedin"></span></a></li>
+				  <li><a href="{{ p.instagram_link }}" style="color: #fff; font-size: 1.4rem; transition: 0.3s;"><span class="fab fa-instagram"></span></a></li>
+				  <li><a href="{{ p.discord_link }}" style="color: #fff; font-size: 1.4rem; transition: 0.3s;"><span class="fab fa-discord"></span></a></li>
 				</ul>
 			  </div>
-			  <style>
-				.footer-contact-link {
-					color: rgba(255, 255, 255, 0.8) !important;
-					font-weight: 500;
-					padding: 10px 25px !important;
-					transition: all 0.3s;
-					background: rgba(255, 255, 255, 0.1);
-					border-radius: 50px;
-					text-decoration: none !important;
-					border: 1px solid rgba(255, 255, 255, 0.2);
-				}
-				.footer-contact-link:hover {
-					color: #fff !important;
-					background: rgba(255, 255, 255, 0.2);
-					box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-					transform: translateY(-2px);
-				}
-			  </style>
-			  <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-	Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-	<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+			</div>
+			<div class="col-md-3 mb-4 mb-md-0">
+			  <div class="ftco-footer-widget">
+				<h2 class="footer-heading" style="color: #fff; font-size: 1.1rem; font-weight: 700; letter-spacing: 1px; margin-bottom: 40px; text-transform: uppercase;">Quick Link</h2>
+				<ul class="list-unstyled">
+				  <li class="mb-3"><a href="{% url 'home' %}" style="color: rgba(255,255,255,0.7); text-decoration: none; transition: 0.3s;">Home</a></li>
+				  <li class="mb-3"><a href="{% url 'about' %}" style="color: rgba(255,255,255,0.7); text-decoration: none; transition: 0.3s;">About Me</a></li>
+				  <li class="mb-3"><a href="{% url 'projects' %}" style="color: rgba(255,255,255,0.7); text-decoration: none; transition: 0.3s;">Projects</a></li>
+				  <li class="mb-3"><a href="{% url 'skills' %}" style="color: rgba(255,255,255,0.7); text-decoration: none; transition: 0.3s;">Skills</a></li>
+                  <li class="mb-3"><a href="{% url 'blogs' %}" style="color: rgba(255,255,255,0.7); text-decoration: none; transition: 0.3s;">Blogs</a></li>
+				</ul>
+			  </div>
 			</div>
 		  </div>
+            {% endfor %}
+            <div class="row mt-5">
+                <div class="col-md-12 text-center">
+                    <p style="color: rgba(255,255,255,0.3); font-size: 0.8rem; margin-top: 50px;">
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Monalisa Portfolio
+                    </p>
+                </div>
+            </div>
 		</div>
 	 </footer>
 

@@ -1,13 +1,69 @@
 {% extends 'common_code/base.html' %}
 {% load static %}
 {% block title %} Contact {% endblock title %}
+
+{% block style %}
+<style>
+    body {
+        background: #0f0c29;
+        background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+        color: #fff;
+        font-family: 'Poppins', sans-serif;
+    }
+    .contact-section {
+        padding: 120px 0;
+    }
+    .heading-section h2 {
+        color: #fff;
+        font-size: 3rem;
+        font-weight: 800;
+    }
+    .heading-section p {
+        color: rgba(255, 255, 255, 0.7);
+    }
+    .contact-info .box {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        transition: all 0.3s;
+        height: 100%;
+    }
+    .contact-info .box:hover {
+        transform: translateY(-10px);
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+    .contact-info .icon {
+        width: 60px;
+        height: 60px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        margin: 0 auto 20px;
+        color: #00d2ff;
+        font-size: 1.5rem;
+    }
+    .contact-info h3 {
+        color: #fff;
+        font-size: 1.2rem;
+        font-weight: 700;
+    }
+    .contact-info p, .contact-info p a {
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+    }
+    .contact-info p a:hover {
+        color: #00d2ff;
+    }
+</style>
+{% endblock style %}
+
 {% block main-content %} 
 
   <section class="ftco-section contact-section ftco-no-pb" id="contact-section">
       <div class="container">
       	<div class="row justify-content-center mb-5 pb-3">
           <div class="col-md-7 heading-section text-center ftco-animate">
-            <h1 class="big big-2">Contact</h1>
             <h2 class="mb-4">Contact Me</h2>
             <p>Below are the details to reach out to me!</p>
           </div>
@@ -17,7 +73,7 @@
           <div class="col-md-6 col-lg-3 d-flex ftco-animate">
           	<div class="align-self-stretch box p-4 text-center">
           		<div class="icon d-flex align-items-center justify-content-center">
-          			<span class="icon-map-signs"></span>
+          			<span class="fas fa-map-marker-alt"></span>
           		</div>
           		<h3 class="mb-4">Address</h3>
 	            <p>{{data.address}}</p>
@@ -26,29 +82,30 @@
           <div class="col-md-6 col-lg-3 d-flex ftco-animate">
           	<div class="align-self-stretch box p-4 text-center">
           		<div class="icon d-flex align-items-center justify-content-center">
-          			<span class="icon-phone2"></span>
+          			<span class="fas fa-phone"></span>
           		</div>
           		<h3 class="mb-4">Contact Number</h3>
-	            <p><a href="#">+880{{data.phone_number}}</a></p>
+	            <p><a href="tel:+880{{data.phone_number}}">+880{{data.phone_number}}</a></p>
 	          </div>
           </div>
           <div class="col-md-6 col-lg-3 d-flex ftco-animate">
           	<div class="align-self-stretch box p-4 text-center">
           		<div class="icon d-flex align-items-center justify-content-center">
-          			<span class="icon-paper-plane"></span>
+          			<span class="fas fa-paper-plane"></span>
           		</div>
           		<h3 class="mb-4">Email Address</h3>
-	            <p><a href="#">{{data.email_address}}</a></p>
+	            <p><a href="mailto:{{data.email_address}}">{{data.email_address}}</a></p>
 	          </div>
           </div>
           <div class="col-md-6 col-lg-3 d-flex ftco-animate">
           	<div class="align-self-stretch box p-4 text-center">
           		<div class="icon d-flex align-items-center justify-content-center">
-          			<span class="icon-globe"></span>
+          			<span class="fas fa-file-download"></span>
           		</div>
           		<h3 class="mb-4">Download Resume</h3>
-	            <p><a href="{{data.reusme_link}}">resumelink</a></p>
+	            <p><a href="{{data.reusme_link}}" target="_blank">View Resume</a></p>
 	          </div>
+          </div>
           </div>
 		  {% endfor %}
 

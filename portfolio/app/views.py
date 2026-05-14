@@ -15,20 +15,24 @@ def Home(request):
     })
 
 def About(request):
-    return render(request, 'app/about.html')
+    data = Personal_Info.objects.all()
+    return render(request, 'app/about.html', {'data': data})
 
 def Projects(request):
-    projects = Projects_list.objects.all()    
-    return render(request, 'app/projects.html' ,{'projects':projects})
+    projects = Projects_list.objects.all()
+    data = Personal_Info.objects.all()
+    return render(request, 'app/projects.html', {'projects': projects, 'data': data})
 
 def Skills(request):
     skills = Skill.objects.all()
-    return render(request, 'app/skills.html', {'skills': skills})
+    data = Personal_Info.objects.all()
+    return render(request, 'app/skills.html', {'skills': skills, 'data': data})
 
 def Blogs(request):
     blogs = Blog.objects.all()
-    return render(request, 'app/blog.html', {'blogs': blogs})
+    data = Personal_Info.objects.all()
+    return render(request, 'app/blog.html', {'blogs': blogs, 'data': data})
 
 def Contact(request):
     data = Personal_Info.objects.all()
-    return render(request, 'app/contact.html', {'data':data})
+    return render(request, 'app/contact.html', {'data': data})

@@ -13,6 +13,7 @@ class Personal_Info(models.Model):
     linkedin = models.URLField(default='https://github.com/MONAlIS-A') 
     facebook_link =models.URLField(default='https://github.com/MONAlIS-A') 
     instagram_link= models.URLField(default='https://github.com/MONAlIS-A') 
+    github_link = models.URLField(default='https://github.com/')
     discord_link =models.URLField(default='https://github.com/MONAlIS-A') 
 
 
