@@ -33,6 +33,7 @@ class Projects_list(models.Model):
     project_image =models.ImageField(upload_to="my_projects")
     github_link = models.URLField(default='not_available')
     vedio_link = models.URLField(default='not available')
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.Name
@@ -67,6 +68,7 @@ class Blog(models.Model):
     image_url = models.URLField(blank=True, null=True, help_text="URL for the blog category icon/image")
     link = models.URLField(help_text="Link to the full blog post")
     summary_points = models.TextField(help_text="Comma-separated summary points or highlights")
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.title} ({self.category})"

@@ -280,7 +280,7 @@
                     </ul>
 
                     {% with group.list|first as first_blog %}
-                    <a href="{{ first_blog.link }}" class="read-more-btn 
+                    <a href="{{ first_blog.link }}" target="_blank" class="read-more-btn 
                         {% if group.grouper == 'Backend Tips & Tutorials' %}btn-backend
                         {% elif group.grouper == 'Data Engineering Insights' %}btn-data-eng
                         {% elif group.grouper == 'Data Analyst Guides' %}btn-data-ana
